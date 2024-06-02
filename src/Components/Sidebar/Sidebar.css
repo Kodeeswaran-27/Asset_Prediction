@@ -1,0 +1,25 @@
+nav{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.SidebarList{
+  justify-content: center;
+  align-items: center;
+}
+li{
+list-style-type: none;
+}
+.link{
+    width:100%;
+    text-decoration: none !important;
+    height:50px;
+    list-style-type: none;
+    margin: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: rgb(102, 171, 255);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }

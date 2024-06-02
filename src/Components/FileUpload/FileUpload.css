@@ -1,56 +1,177 @@
 .upload {
-  /* Add any styles for the container div */
-  /* background-color: grey; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  height: auto;
+  width: 100%;
+
 }
 
 .div1 {
-  /* Add any styles for the first inner div */
-  background-color: lightgray;
-  border: 2px solid black;
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 70vh;
-  width: 60vw;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 75%;
+  transition: width 0.3s, height 0.3s;
 }
 
-.div2 {
-  /* Add any styles for the second inner div */
-  /* border: 2px solid blue; */
+.div1.large {
+  max-width: 600px;
+  height: 60vh;
+}
+
+.div1.small {
+  max-width: 600px;
+  height: auto;
+}
+
+.div2 h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .drop {
-  border: 2px solid black;
-  border-radius: 4px;
-  padding: 30px;
+  border: 2px dashed #483ea8;
+  border-radius: 8px;
+  padding: 20px;
   text-align: center;
-  /* cursor: pointer; */
-  margin: 20px 0;
+  background-color: #f8f8ff;
+  margin-bottom: 20px;
+  width: 80%;
+  height: 50%;
+  box-sizing: border-box;
 }
 
 .icon {
-  /* Add any styles for the cloud upload icon */
-width: 100px;
-height: 80px;
+  width: 60px;
+  height: 60px;
+  color: #483ea8;
 }
 
 .browse {
   cursor: pointer;
 }
 
-.trash{
+.trash {
   cursor: pointer;
 }
+
 .loading-indicator {
-  /* Add any styles for the loading indicator */
+  margin-bottom: 20px;
 }
 
-.uplaoded {
-  /* Add any styles for the uploaded files section */
+.uploaded {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.uploaded ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.uploaded li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e9f7f9;
+  border: 1px solid #cbe2e7;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.uploaded li span {
+  font-size: 16px;
+  word-break: break-word;
 }
 
 button {
-  /* Add any styles for the button */
+  background-color: #483ea8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin-top: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  max-width: 200px;
 }
 
-/* You can add more styles as needed */
+button:hover {
+  background-color: #1402ba;
+}
+
+.asset-ratio-label {
+  font-weight: bold;
+  font-size: 1em;
+  margin-right: 1%;
+}
+
+.asset-ratio-input {
+  width: 50%;
+  max-width: 250px;
+  padding: 8px 10px;
+  font-size: 1em;
+  border-radius: 2px;
+}
+
+.OSRatio {
+  width: 90%;
+
+  justify-content: center;
+}
+
+
+@media (max-width: 768px) {
+  .asset-ratio-label {
+    margin-right: 10px;
+  }
+
+  .asset-ratio-input {
+    width: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .asset-ratio-label,
+  .asset-ratio-input {
+    display: block;
+    width: auto;
+    margin: 5px 0;
+  }
+
+  .asset-ratio-input {
+    max-width: none;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .div1.large {
+    width: 70vw;
+  }
+
+  .div1.small {
+    width: 60vw;
+  }
+
+  .drop {
+    padding: 30px;
+  }
+
+  button {
+    width: auto;
+  }
+}

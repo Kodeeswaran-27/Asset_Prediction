@@ -1,0 +1,99 @@
+{
+    "January": [
+      { "name": "Assets that need replacement", "count": 50 },
+      { "name": "New Assets required", "count": 70 },
+      { "name": "End of life assets", "count": 20 },
+      { "name": "Total required Assets", "count": 140 },
+      { "name": "Total predicted Assets", "count": 160 },
+      { "name": "Deviation", "count": "+20" }
+    ],
+    "February": [
+      { "name": "Assets that need replacement", "count": 45 },
+      { "name": "New Assets required", "count": 60 },
+      { "name": "End of life assets", "count": 25 },
+      { "name": "Total required Assets", "count": 130 },
+      { "name": "Total predicted Assets", "count": 150 },
+      { "name": "Deviation", "count": "+20" }
+    ],
+    "March": [
+        { "name": "Assets that need replacement", "count": 55 },
+        { "name": "New Assets required", "count": 74 },
+        { "name": "End of life assets", "count": 23 },
+        { "name": "Total required Assets", "count": 141 },
+        { "name": "Total predicted Assets", "count": 169 },
+        { "name": "Deviation", "count": "+29" }
+      ],
+      "April": [
+        { "name": "Assets that need replacement", "count": 43 },
+        { "name": "New Assets required", "count": 60 },
+        { "name": "End of life assets", "count": 23 },
+        { "name": "Total required Assets", "count": 126 },
+        { "name": "Total predicted Assets", "count": 154 },
+        { "name": "Deviation", "count": "+28" }
+      ],
+      "May": [
+        { "name": "Assets that need replacement", "count": 46 },
+        { "name": "New Assets required", "count": 69 },
+        { "name": "End of life assets", "count": 26 },
+        { "name": "Total required Assets", "count": 141 },
+        { "name": "Total predicted Assets", "count": 161 },
+        { "name": "Deviation", "count": "+20" }
+      ],
+      "June": [
+        { "name": "Assets that need replacement", "count": 54 },
+        { "name": "New Assets required", "count": 63 },
+        { "name": "End of life assets", "count": 29 },
+        { "name": "Total required Assets", "count": 146 },
+        { "name": "Total predicted Assets", "count": 160 },
+        { "name": "Deviation", "count": "+14" }
+      ],
+      "July": [
+        { "name": "Assets that need replacement", "count": 45 },
+        { "name": "New Assets required", "count": 69 },
+        { "name": "End of life assets", "count": 16 },
+        { "name": "Total required Assets", "count": 130 },
+        { "name": "Total predicted Assets", "count": 140 },
+        { "name": "Deviation", "count": "+10" }
+      ],
+      "August": [
+        { "name": "Assets that need replacement", "count": 40 },
+        { "name": "New Assets required", "count": 55 },
+        { "name": "End of life assets", "count": 35 },
+        { "name": "Total required Assets", "count": 130 },
+        { "name": "Total predicted Assets", "count": 159 },
+        { "name": "Deviation", "count": "+29" }
+      ],
+      "September": [
+        { "name": "Assets that need replacement", "count": 41 },
+        { "name": "New Assets required", "count": 63 },
+        { "name": "End of life assets", "count": 29 },
+        { "name": "Total required Assets", "count": 133 },
+        { "name": "Total predicted Assets", "count": 157 },
+        { "name": "Deviation", "count": "+24" }
+      ],
+      "October": [
+        { "name": "Assets that need replacement", "count": 48 },
+        { "name": "New Assets required", "count": 62 },
+        { "name": "End of life assets", "count": 29 },
+        { "name": "Total required Assets", "count": 139 },
+        { "name": "Total predicted Assets", "count": 160 },
+        { "name": "Deviation", "count": "+21" }
+      ],
+      "November": [
+        { "name": "Assets that need replacement", "count": 41 },
+        { "name": "New Assets required", "count": 65 },
+        { "name": "End of life assets", "count": 22 },
+        { "name": "Total required Assets", "count": 128 },
+        { "name": "Total predicted Assets", "count": 150 },
+        { "name": "Deviation", "count": "+22" }
+      ],
+      "December": [
+        { "name": "Assets that need replacement", "count": 47 },
+        { "name": "New Assets required", "count": 64 },
+        { "name": "End of life assets", "count": 25 },
+        { "name": "Total required Assets", "count": 136 },
+        { "name": "Total predicted Assets", "count": 159 },
+        { "name": "Deviation", "count": "+23" }
+      ]
+   
+  }

@@ -4,25 +4,26 @@ import * as XLSX from 'xlsx';
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { v4 as uuidv4 } from 'uuid';
 import { FaTrash } from 'react-icons/fa';
-import './FileUpload.css'; // Import the CSS file
+import './FileUpload.css';
 
 const FileUpload = () => {
   const [loading, setLoading] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
+  const [assetRatio, setAssetRatio] = useState("60:40");
 
   const handleDrop = (acceptedFiles) => {
     setLoading(true);
     setTimeout(() => {
       processFiles(acceptedFiles);
-    }, 5000); // Display the loading message for 5 seconds
+    }, 5000);
   };
 
   const handleBrowse = (event) => {
     setLoading(true);
     setTimeout(() => {
       processFiles(event.target.files);
-    }, 5000); // Display the loading message for 5 seconds
+    }, 5000);
   };
 
   const processFiles = (files) => {
@@ -46,7 +47,7 @@ const FileUpload = () => {
         };
         reader.readAsArrayBuffer(file);
       } else {
-        console.error('Invalid file type. Please upload a CSV or XLSX file.');
+        alert('Invalid file type. Please upload a CSV or XLSX file.');
         setLoading(false);
       }
     });
@@ -67,7 +68,12 @@ const FileUpload = () => {
     });
   };
 
-  const { getRootProps } = useDropzone({
+  const handleAssetRatioChange = (e) => {
+    console.log(e.target.value);
+    setAssetRatio(e.target.value);
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleDrop,
     onDragEnter: () => setIsDragging(true),
     onDragLeave: () => setIsDragging(false),
@@ -77,7 +83,7 @@ const FileUpload = () => {
 
   return (
     <div className='upload'>
-      <div className='div1'>
+      <div className={`div1 ${uploadedFiles.length > 0 ? 'small' : 'large'}`}>
         <div className='div2'>
           <h1>Upload</h1>
         </div>
@@ -85,10 +91,10 @@ const FileUpload = () => {
           {...getRootProps()}
           style={{ borderColor: isDragging ? 'blue' : '#cccccc' }}
         >
-          <IoCloudUploadOutline className='icon' color='blue'/>
+          <IoCloudUploadOutline className='icon' color='blue' />
           <p><b>Drag & drop files or &nbsp;
             <label className='browse' htmlFor="browseInput"><u>Browse</u></label>
-            <input id="browseInput" type="file" {...getBrowseInputProps()} />
+            <input id="browseInput" type="file" {...getInputProps()} />
           </b></p>
           <span>Supported file formats: CSV, Excel</span>
         </div>
@@ -102,14 +108,18 @@ const FileUpload = () => {
               {uploadedFiles.map((file) => (
                 <li key={file.id}>
                   <span>{file.name}</span>
-                  <FaTrash color='red'className='trash' onClick={(e) => { e.stopPropagation(); deleteFile(file.id); }} />
+                  <FaTrash color='red' className='trash' onClick={(e) => { e.stopPropagation(); deleteFile(file.id); }} />
                 </li>
               ))}
             </ul>
           </div>
         )}
-        <button onClick={displayFileData}>Upload Files</button>
-        {/* <button onClick={clearFiles}>Clear Files</button> */}
+        <div className="OSRatio" style={{ display: 'flex', alignItems: 'center' }}>
+          <label htmlFor="assetRatio" className="asset-ratio-label">Asset ratio(Windows:Mac):</label>
+          <input id="assetRatio" className="asset-ratio-input" type="text" value={assetRatio} onChange={handleAssetRatioChange} />
+        </div>
+        <button className='uploadButton' onClick={displayFileData}>Upload Files</button>
+
       </div>
     </div>
   );
