@@ -62,20 +62,22 @@ const FileUpload = () => {
   const deleteFile = (id) => {
     setUploadedFiles(prevFiles => prevFiles.filter(file => file.id !== id));
   };
-  
-  const goBack = async (jsonData) => { 
-    try {  
-      const response = await axios.post('http://localhost:5000/upload', jsonData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      console.log('Data uploaded successfully:', response.data);  
-      navigate('/main/graph');  
-    } catch (error) {  
-      console.error('Error uploading data:', error);  
-    }  
+  const goBack=()=>{
+    navigate('/main/graph');
   }
+  // const goBack = async (jsonData) => { 
+  //   try {  
+  //     const response = await axios.post('http://localhost:5000/upload', jsonData, {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     })
+  //     console.log('Data uploaded successfully:', response.data);  
+  //     navigate('/main/graph');  
+  //   } catch (error) {  
+  //     console.error('Error uploading data:', error);  
+  //   }  
+  // }
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleDrop,
