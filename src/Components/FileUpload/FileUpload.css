@@ -14,7 +14,6 @@
   background-color: white;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,11 +26,13 @@
 .div1.large {
   max-width: 600px;
   height: 60vh;
+  align-items: center;
 }
 
 .div1.small {
   max-width: 600px;
   height: auto;
+  align-items: center;
 }
 
 .div2 h1 {
@@ -108,8 +109,8 @@ button {
   max-width: 200px;
 }
 
-button:hover {
-  background-color: #1402ba;
+button:hover{
+  background-color: rgb(27, 117, 227) !important;
 }
 
 .asset-ratio-label {
@@ -119,7 +120,7 @@ button:hover {
 }
 
 .asset-ratio-input {
-  width: 50%;
+  width: 5%;
   max-width: 250px;
   padding: 8px 10px;
   font-size: 1em;
@@ -128,7 +129,6 @@ button:hover {
 
 .OSRatio {
   width: 90%;
-
   justify-content: center;
 }
 
@@ -170,8 +170,8 @@ button:hover {
   .drop {
     padding: 30px;
   }
-
+/* 
   button {
     width: auto;
-  }
+  } */
 }

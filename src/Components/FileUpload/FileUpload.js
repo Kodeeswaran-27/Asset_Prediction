@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 import * as XLSX from 'xlsx';
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { v4 as uuidv4 } from 'uuid';
 import { FaTrash } from 'react-icons/fa';
 import './FileUpload.css';
+import axios from 'axios';
 
 const FileUpload = () => {
   const [loading, setLoading] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
-  const [assetRatio, setAssetRatio] = useState("60:40");
+  const [windows, setWindows] = useState("60");
+  const [mac, setMac] = useState("40");
+  const [year,setYear]= useState("");
+  const navigate = useNavigate();
 
   const handleDrop = (acceptedFiles) => {
     setLoading(true);
@@ -44,6 +49,7 @@ const FileUpload = () => {
           setUploadedFiles(prevFiles => [...prevFiles, { name: file.name, data: jsonData, id: uuidv4() }]);
           setLoading(false);
           setIsDragging(false);
+          goBack(jsonData);
         };
         reader.readAsArrayBuffer(file);
       } else {
@@ -56,22 +62,20 @@ const FileUpload = () => {
   const deleteFile = (id) => {
     setUploadedFiles(prevFiles => prevFiles.filter(file => file.id !== id));
   };
-
-  const clearFiles = () => {
-    setUploadedFiles([]);
-  };
-
-  const displayFileData = () => {
-    uploadedFiles.forEach((file) => {
-      console.log('File Name:', file.name);
-      console.log('File Data:', file.data);
-    });
-  };
-
-  const handleAssetRatioChange = (e) => {
-    console.log(e.target.value);
-    setAssetRatio(e.target.value);
-  };
+  
+  const goBack = async (jsonData) => { 
+    try {  
+      const response = await axios.post('http://localhost:5000/upload', jsonData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      console.log('Data uploaded successfully:', response.data);  
+      navigate('/main/graph');  
+    } catch (error) {  
+      console.error('Error uploading data:', error);  
+    }  
+  }
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleDrop,
@@ -79,7 +83,7 @@ const FileUpload = () => {
     onDragLeave: () => setIsDragging(false),
   });
 
-  const { getInputProps: getBrowseInputProps } = useDropzone({ onDrop: handleBrowse, noClick: true, noKeyboard: true });
+ useDropzone({ onDrop: handleBrowse, noClick: true, noKeyboard: true });
 
   return (
     <div className='upload'>
@@ -116,10 +120,14 @@ const FileUpload = () => {
         )}
         <div className="OSRatio" style={{ display: 'flex', alignItems: 'center' }}>
           <label htmlFor="assetRatio" className="asset-ratio-label">Asset ratio(Windows:Mac):</label>
-          <input id="assetRatio" className="asset-ratio-input" type="text" value={assetRatio} onChange={handleAssetRatioChange} />
+          <input id="assetRatiowindows" className="asset-ratio-input" type="text" value={windows} onChange={(e) => { setWindows(e.target.value) }} /> &nbsp;:&nbsp;
+          <input id="assetRatiomac" className="asset-ratio-input" type="text" value={mac} onChange={(e) => { setMac(e.target.value) }} />
+          <label>Year to predict</label>
+          <input type='text' value={year} onChange={(e)=>{setYear(e.target.value)}}/>
         </div>
-        <button className='uploadButton' onClick={displayFileData}>Upload Files</button>
-
+        <div>
+          <button className='uploadButton' onClick={goBack}>Upload Files</button>
+        </div>
       </div>
     </div>
   );

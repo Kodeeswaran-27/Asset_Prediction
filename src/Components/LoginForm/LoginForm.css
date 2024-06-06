@@ -82,7 +82,7 @@ height: 25vh;
 }
 .button{
     color: whitesmoke;
-    background-color:#123361;
+    background-color:#123361 !important;
     margin-top: 25px;
     width: 95%;
     height: 40px;
