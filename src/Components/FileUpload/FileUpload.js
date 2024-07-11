@@ -12,9 +12,8 @@ const FileUpload = () => {
   const [loading, setLoading] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
-  const [windows, setWindows] = useState("60");
-  const [mac, setMac] = useState("40");
-  const [year,setYear]= useState("");
+  const [assetRatio, setAssetRatio] = useState("60:40");
+  const [year, setYear] = useState("");
   const navigate = useNavigate();
 
   const handleDrop = (acceptedFiles) => {
@@ -62,22 +61,22 @@ const FileUpload = () => {
   const deleteFile = (id) => {
     setUploadedFiles(prevFiles => prevFiles.filter(file => file.id !== id));
   };
-  const goBack=()=>{
+  
+  const goBack = async (jsonData) => { 
+    console.log("Button clicked")
     navigate('/main/graph');
+    // try {  
+    //   const response = await axios.post('http://localhost:5000/upload', jsonData, {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   });
+    //   console.log('Data uploaded successfully:', response.data);  
+    //   navigate('/main/graph');  
+    // } catch (error) {  
+    //   console.error('Error uploading data:', error);  
+    // }  
   }
-  // const goBack = async (jsonData) => { 
-  //   try {  
-  //     const response = await axios.post('http://localhost:5000/upload', jsonData, {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     })
-  //     console.log('Data uploaded successfully:', response.data);  
-  //     navigate('/main/graph');  
-  //   } catch (error) {  
-  //     console.error('Error uploading data:', error);  
-  //   }  
-  // }
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleDrop,
@@ -88,17 +87,18 @@ const FileUpload = () => {
  useDropzone({ onDrop: handleBrowse, noClick: true, noKeyboard: true });
 
   return (
+    <div>
     <div className='upload'>
       <div className={`div1 ${uploadedFiles.length > 0 ? 'small' : 'large'}`}>
         <div className='div2'>
-          <h1>Upload</h1>
+          <h1>Asset Management</h1>
         </div>
         <div className='drop'
           {...getRootProps()}
           style={{ borderColor: isDragging ? 'blue' : '#cccccc' }}
         >
           <IoCloudUploadOutline className='icon' color='blue' />
-          <p><b>Drag & drop files or &nbsp;
+          <p><b>Drop file or &nbsp;
             <label className='browse' htmlFor="browseInput"><u>Browse</u></label>
             <input id="browseInput" type="file" {...getInputProps()} />
           </b></p>
@@ -108,7 +108,7 @@ const FileUpload = () => {
           <div className="loading-indicator">Uploading and processing files...</div>
         )}
         {uploadedFiles.length > 0 && (
-          <div className='uplaoded'>
+          <div className='uploaded'>
             <h3>Uploaded Files:</h3>
             <ul>
               {uploadedFiles.map((file) => (
@@ -120,19 +120,27 @@ const FileUpload = () => {
             </ul>
           </div>
         )}
-        <div className="OSRatio" style={{ display: 'flex', alignItems: 'center' }}>
-          <label htmlFor="assetRatio" className="asset-ratio-label">Asset ratio(Windows:Mac):</label>
-          <input id="assetRatiowindows" className="asset-ratio-input" type="text" value={windows} onChange={(e) => { setWindows(e.target.value) }} /> &nbsp;:&nbsp;
-          <input id="assetRatiomac" className="asset-ratio-input" type="text" value={mac} onChange={(e) => { setMac(e.target.value) }} />
-          <label>Year to predict</label>
-          <input type='text' value={year} onChange={(e)=>{setYear(e.target.value)}}/>
+        <div className="OSRatio">
+          {/* <div className="OSRatioBlock">
+            <label htmlFor="assetRatio" className="asset-ratio-label">Asset ratio (Windows:Mac):</label>
+            <input id="assetRatio" className="asset-ratio-input" type="text" value={assetRatio} onChange={(e) => setAssetRatio(e.target.value)} />
+          </div> */}
+          <div className="OSRatioBlock">
+            <label htmlFor="yearToPredict" className="asset-ratio-label">Year to predict:</label>
+            <input id="yearToPredict" className="asset-ratio-input" type="text" value={year} onChange={(e) => setYear(e.target.value)} placeholder="please enter the year"/>
+          </div>
         </div>
-        <div>
+      <div>
           <button className='uploadButton' onClick={goBack}>Upload Files</button>
         </div>
       </div>
+      
     </div>
+    <div className='footer'>
+    © 2024 Wipro
+    </div>
+    </div>
+    
   );
 };
-
 export default FileUpload;

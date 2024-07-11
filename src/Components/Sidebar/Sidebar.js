@@ -1,18 +1,23 @@
 import React from 'react';
-import {Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
-import { FaHome,FaFileInvoice,FaUpload} from "react-icons/fa";
+// import HomeIcon from '@mui/icons-material/Home';
+// import SummarizeIcon from '@mui/icons-material/Summarize';
+// import UploadFileIcon from '@mui/icons-material/UploadFile';
 
 function Sidebar() {
   return (
-      <nav>
-        <ul className='SidebarList'>
-          <li><Link to="/main/home" className='link'><FaHome size={20}/> &nbsp;Home</Link></li>
-          {/* <li><Link to="/main/accounts">Account</Link></li> */}
-          <li><Link to="/main/logs" className='link'><FaFileInvoice/>&nbsp;Logs</Link></li>
-          <li><Link to="/main/fileupload" className='link'><FaUpload/>&nbsp;FileUpload</Link></li>
-        </ul>
-      </nav>
+
+    <nav>
+      <ul className='SidebarList'>
+        <li><NavLink to="/main/home" className='link' activeClassName='active' id='title'> &nbsp;Home</NavLink></li>
+        <li><NavLink to="/main/logs" className='link' activeClassName='active' id='title'>&nbsp;Logs</NavLink></li>
+        <li><NavLink to="/main/fileupload" className='link' activeClassName='active' id='title'>&nbsp;FileUpload</NavLink></li>
+      </ul>
+
+    </nav>
+
+
   )
 }
 export default Sidebar;

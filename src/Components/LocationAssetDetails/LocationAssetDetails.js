@@ -1,27 +1,23 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import monthlyData from './monthlyData.json';
-import { IoMdArrowRoundBack } from "react-icons/io";
+import monthlyData from './monthlyData.json'; 
 import './LocationAssetDetails.css';
-
+ 
 function LocationAssetDetails() {
   const { countryName } = useParams();
   const navigate = useNavigate();
-
+   
   const months = Object.keys(monthlyData);
-  const laptopDetails = () => {
+  const laptopDetails= () =>{
     navigate(`/main/location/${countryName}/laptopdetails`);
-  }
-
-  const goBack = () => {
-    navigate('/main/home');
-  }
-
+  } 
+   
   return (
+  
+    <div>
     <div className='primaryDashboard'>
       <div className="countryDetails">
-        {/* <button onClick={goBack}><IoMdArrowRoundBack color='white' size={30} /></button> */}
-        <span className='text'>Details for the Country {countryName}</span>
+        <span>Details for the Country {countryName}</span>
       </div>
       <div className="dashboard">
         {months.map((month, index) => (
@@ -33,7 +29,7 @@ function LocationAssetDetails() {
                 <span>Count</span>
               </div>
               {monthlyData[month].map((item, idx) => (
-                <div className="table-row" key={idx} onClick={laptopDetails} style={{ cursor: 'pointer' }}>
+                <div className="table-row" key={idx} onClick={laptopDetails} style={{cursor: 'pointer'}}>
                   <span>{item.name}</span>
                   <span>{item.count}</span>
                 </div>
@@ -42,7 +38,15 @@ function LocationAssetDetails() {
           </div>
         ))}
       </div>
+
     </div>
+    <div className='footer'>
+                © 2024 Wipro
+                </div>
+   </div>
+    
+   
   );
 }
+ 
 export default LocationAssetDetails;

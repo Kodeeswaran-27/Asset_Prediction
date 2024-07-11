@@ -34,7 +34,6 @@ height: 25vh;
     width: 100%;
     height: 2vh;
     text-align: left;
-    /* border: 1px solid white; */
     font-size: 30px;
     font-weight: bold;
     color: whitesmoke;
@@ -82,30 +81,36 @@ height: 25vh;
 }
 .button{
     color: whitesmoke;
-    background-color:#123361 !important;
+    background-color:#123361;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 25px;
     width: 95%;
     height: 40px;
     cursor: pointer;
     border-radius: 10px;
     border: none;
-    font-size: 25px;
-    box-shadow: 0 4px rgb(63, 63, 213);
+    font-weight: bold;
+    font-size: 20px;
 }
 .button:active{
-    background-color: lightblue;
-    box-shadow: 0 5px #666;
+    background-color: rgb(18, 31, 168);
     transform: translateY(4px);
 }
 .button:hover{
-    background-color: rgb(49, 62, 215);
+    background-color: rgb(18, 31, 168);
 }
 .footer{
     flex: 1;
     width: 100%;
     bottom: 0;
     left: 0;
-    position: absolute;
+    /* position: fixed; */
     font-size: 15px;
+    right: 0;
     color: whitesmoke;
+    text-align: center;
+    padding: 10px 0; 
+    background-color: transparent;
 } 

@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import LocationAssetDetails from '../LocationAssetDetails/LocationAssetDetails';
 import LaptopDetails from '../LaptopDetails/LaptopDetails';
 import Accounts from '../Accounts/Accounts';
-import Home from '../Home/Home';
+// import Home from '../Home/Home';
 import Logs from '../Logs/Logs';
 import Graph from '../Graph/Graph';
 import "./Main.css";
@@ -14,15 +14,15 @@ import "./Main.css";
 function App() {
     return (
         <div className='App'>
-            <nav>
-                <Navbar />
+            <nav className='mainpage'>
+                <Navbar userName="Admin" userRole="Asset Predictor"/>
                 <div className='Maindiv'>
-                    <div className="Sidebar">
+                    {/* <div className="Sidebar">
                         <Sidebar />
-                    </div>
+                    </div> */}
                     <div className="Sidebar1">
                         <Routes>
-                            <Route path="home" element={<Home />} />
+                            <Route path="home" element={<FileUpload />} />
                             <Route path="fileupload" element={<FileUpload />} />
                             <Route path="location/:countryName" element={<LocationAssetDetails />} />
                             <Route path="location/:countryName/laptopdetails" element={<LaptopDetails />} />
@@ -36,4 +36,4 @@ function App() {
         </div>
     )
 }
-export default App
+export default App;

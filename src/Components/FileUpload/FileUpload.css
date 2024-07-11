@@ -1,3 +1,6 @@
+/* Filename: styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300');
+
 .upload {
   display: flex;
   justify-content: center;
@@ -7,49 +10,49 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   height: auto;
   width: 100%;
-
 }
 
 .div1 {
-  background-color: white;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  /* background-color: white; */
+  /* border: 2px solid #e0e0e0; */
+  /* border-radius: 8px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   width: 75%;
   transition: width 0.3s, height 0.3s;
 }
 
 .div1.large {
   max-width: 600px;
-  height: 60vh;
-  align-items: center;
+  height: 70vh;
 }
 
 .div1.small {
   max-width: 600px;
   height: auto;
-  align-items: center;
 }
 
 .div2 h1 {
-  font-size: 24px;
+  font-size: 32px;
   margin-bottom: 20px;
+  color: whitesmoke;
+  font-weight: lighter;
+  font-family: "Montserrat", sans-serif;
 }
 
 .drop {
-  border: 2px dashed #483ea8;
-  border-radius: 8px;
-  padding: 20px;
+  /* border: 2px dashed #483ea8; */
+  border-radius: 12px;
+  /* padding: 20px; */
   text-align: center;
   background-color: #f8f8ff;
   margin-bottom: 20px;
-  width: 80%;
-  height: 50%;
-  box-sizing: border-box;
+  width: 100%;
+  /* height: 50%; */
+  /* box-sizing: border-box; */
 }
 
 .icon {
@@ -109,54 +112,113 @@ button {
   max-width: 200px;
 }
 
-button:hover{
-  background-color: rgb(27, 117, 227) !important;
+button:hover {
+  background-color: #1402ba;
 }
 
-.asset-ratio-label {
-  font-weight: bold;
-  font-size: 1em;
-  margin-right: 1%;
-}
-
-.asset-ratio-input {
-  width: 5%;
+.year-input {
+  width: 50%;
   max-width: 250px;
   padding: 8px 10px;
   font-size: 1em;
   border-radius: 2px;
 }
 
+.year-input::placeholder {
+  color: #cccccc;
+}
+
 .OSRatio {
-  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.OSRatioBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
+  width: 90%;
+  margin-bottom: 20px;
+}
+
+
+.asset-ratio-label,
+.year-label {
+  font-weight: bold;
+  font-size: 16px;
+  flex-basis: 35%;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.asset-ratio-input,
+.year-input {
+
+  padding: 8px 10px;
+  flex-basis: 50%;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 60%;
+  box-sizing: border-box;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px 0;
+  color: black;
+  /* position: fixed; */
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: transparent;
 }
 
 
 @media (max-width: 768px) {
-  .asset-ratio-label {
-    margin-right: 10px;
+
+  .asset-ratio-label,
+  .year-label {
+    flex-basis: 40%;
   }
 
-  .asset-ratio-input {
+  .asset-ratio-input,
+  .year-input {
     width: 60%;
   }
 }
 
 @media (max-width: 480px) {
 
+  .OSRatioBlock {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .asset-ratio-label,
-  .asset-ratio-input {
+  .year-label {
+    text-align: left;
+    padding-right: 0;
+    margin-bottom: 5px;
+  }
+
+
+  .asset-ratio-input,
+  .year-input {
     display: block;
     width: auto;
     margin: 5px 0;
   }
 
-  .asset-ratio-input {
+  .asset-ratio-input,
+  .year-input {
     max-width: none;
   }
 }
-
 
 @media (min-width: 768px) {
   .div1.large {
@@ -170,8 +232,8 @@ button:hover{
   .drop {
     padding: 30px;
   }
-/* 
+
   button {
     width: auto;
-  } */
+  }
 }
