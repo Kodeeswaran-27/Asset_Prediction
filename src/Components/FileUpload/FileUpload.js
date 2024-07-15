@@ -61,8 +61,8 @@ const FileUpload = () => {
   const deleteFile = (id) => {
     setUploadedFiles(prevFiles => prevFiles.filter(file => file.id !== id));
   };
-  
-  const goBack = async (jsonData) => { 
+
+  const goBack = async (jsonData) => {
     console.log("Button clicked")
     navigate('/main/graph');
     // try {  
@@ -84,63 +84,62 @@ const FileUpload = () => {
     onDragLeave: () => setIsDragging(false),
   });
 
- useDropzone({ onDrop: handleBrowse, noClick: true, noKeyboard: true });
+  useDropzone({ onDrop: handleBrowse, noClick: true, noKeyboard: true });
 
   return (
     <div>
-    <div className='upload'>
-      <div className={`div1 ${uploadedFiles.length > 0 ? 'small' : 'large'}`}>
-        <div className='div2'>
-          <h1>Asset Management</h1>
-        </div>
-        <div className='drop'
-          {...getRootProps()}
-          style={{ borderColor: isDragging ? 'blue' : '#cccccc' }}
-        >
-          <IoCloudUploadOutline className='icon' color='blue' />
-          <p><b>Drop file or &nbsp;
-            <label className='browse' htmlFor="browseInput"><u>Browse</u></label>
-            <input id="browseInput" type="file" {...getInputProps()} />
-          </b></p>
-          <span>Supported file formats: CSV, Excel</span>
-        </div>
-        {loading && (
-          <div className="loading-indicator">Uploading and processing files...</div>
-        )}
-        {uploadedFiles.length > 0 && (
-          <div className='uploaded'>
-            <h3>Uploaded Files:</h3>
-            <ul>
-              {uploadedFiles.map((file) => (
-                <li key={file.id}>
-                  <span>{file.name}</span>
-                  <FaTrash color='red' className='trash' onClick={(e) => { e.stopPropagation(); deleteFile(file.id); }} />
-                </li>
-              ))}
-            </ul>
+      <div className='upload'>
+        <div className={`div1 ${uploadedFiles.length > 0 ? 'small' : 'large'}`}>
+          <div className='div2'>
+            <h1>Asset Management</h1>
           </div>
-        )}
-        <div className="OSRatio">
-          {/* <div className="OSRatioBlock">
+          <div className='drop'
+            {...getRootProps()}
+            style={{ borderColor: isDragging ? 'blue' : '#cccccc' }}
+          >
+            <IoCloudUploadOutline className='icon' color='blue' />
+            <p><b>Drop file or &nbsp;
+              <label className='browse' htmlFor="browseInput"><u>Browse</u></label>
+              <input id="browseInput" type="file" {...getInputProps()} />
+            </b></p>
+            <span>Supported file formats: CSV, Excel</span>
+          </div>
+          {loading && (
+            <div className="loading-indicator">Uploading and processing files...</div>
+          )}
+          {uploadedFiles.length > 0 && (
+            <div className='uploaded'>
+              <h3>Uploaded Files:</h3>
+              <ul>
+                {uploadedFiles.map((file) => (
+                  <li key={file.id}>
+                    <span>{file.name}</span>
+                    <FaTrash color='red' className='trash' onClick={(e) => { e.stopPropagation(); deleteFile(file.id); }} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {/* <div className="OSRatio">
+          <div className="OSRatioBlock">
             <label htmlFor="assetRatio" className="asset-ratio-label">Asset ratio (Windows:Mac):</label>
             <input id="assetRatio" className="asset-ratio-input" type="text" value={assetRatio} onChange={(e) => setAssetRatio(e.target.value)} />
-          </div> */}
+          </div>
           <div className="OSRatioBlock">
             <label htmlFor="yearToPredict" className="asset-ratio-label">Year to predict:</label>
             <input id="yearToPredict" className="asset-ratio-input" type="text" value={year} onChange={(e) => setYear(e.target.value)} placeholder="please enter the year"/>
           </div>
-        </div>
-      <div>
-          <button className='uploadButton' onClick={goBack}>Upload Files</button>
+        </div> */}
+          <div>
+            <button className='uploadButton' onClick={goBack}>Upload Files</button>
+          </div>
         </div>
       </div>
-      
+      <div className='footer'>
+          © 2024 Wipro
+        </div>
     </div>
-    <div className='footer'>
-    © 2024 Wipro
-    </div>
-    </div>
-    
+
   );
 };
 export default FileUpload;

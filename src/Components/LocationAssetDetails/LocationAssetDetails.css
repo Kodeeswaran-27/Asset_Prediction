@@ -1,3 +1,17 @@
+.primaryDashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
 
 .countryDetails {
   display: flex;
@@ -5,34 +19,16 @@
   align-items: center;
   font-weight: bold;
   margin-top: 10px;
-
-
 }
 
-.primaryDashboard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  flex: 1;
-
-  
-}
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa;
-}
- 
 .dashboard {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px;
+  max-width: 1200px; 
 }
- 
+
 .month-box {
   background-color: white;
   border: 1px solid #ddd;
@@ -42,9 +38,8 @@ body {
   width: calc(33.33% - 20px); 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  height: 500px; 
 }
- 
+
 .month-box h2 {
   text-align: center;
   background-color: #f1f1f1;
@@ -53,13 +48,19 @@ body {
   border-radius: 8px 8px 0 0;
   border-bottom: 1px solid #ddd;
 }
- 
+
 .data-table {
   display: flex;
   flex-direction: column;
-  height: 100%; 
+  height: 100%;
 }
- 
+
+.table-header {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
 .table-header, .table-row {
   display: flex;
   justify-content: space-between;
@@ -67,38 +68,50 @@ body {
   border-bottom: 1px solid #ddd;
 }
 
-.footer {
-  
-  text-align: center;
-  color:black;
-  /* position: fixed; */
-  background-color: transparent;
-  
+.table-body {
+  flex: 1;
+  overflow-y: auto;
+  height: calc(6 * 40px); /* Adjust 40px based on row height */
 }
 
- 
-.table-header {
-  font-weight: bold;
-  background-color: #f1f1f1;
-  padding: 20px 0;
-}
- 
 .table-row:last-child {
   border-bottom: none;
 }
- 
 
-@media (max-width: 1200px) {
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.footer {
+  text-align: center;
+  color: black;
+  background-color: transparent;
+}
+
+@media (max-width: 1300px) {
   .month-box {
     width: calc(50% - 20px); 
   }
 }
- 
+
 @media (max-width: 768px) {
   .month-box {
     width: calc(100% - 20px); 
   }
-
-  
- 
 }
