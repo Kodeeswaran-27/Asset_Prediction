@@ -1,3 +1,6 @@
+/* .top{
+  margin-bottom: 10%;
+} */
 .primaryDashboard {
   display: flex;
   flex-direction: column;
@@ -18,15 +21,22 @@
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 20px;
+}
+
+.PredictedData {
+  color: white;
+  font-size: 150%;
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 .dashboard {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 20px;
-  max-width: 1200px; 
+  padding: 10px 20px 20px 20px;
+  max-width: 1200px;
 }
 
 .month-box {
@@ -35,19 +45,45 @@
   border-radius: 8px;
   margin: 10px;
   padding: 10px;
-  width: calc(33.33% - 20px); 
+  width: calc(33.33% - 20px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  position: relative; /* Added to position the button */
 }
 
 .month-box h2 {
   text-align: center;
   background-color: #f1f1f1;
+  color: black;
+  font-weight: bold;
   padding: 10px;
   margin: -10px -10px 10px -10px;
   border-radius: 8px 8px 0 0;
   border-bottom: 1px solid #ddd;
 }
+
+.maindiv{
+  display: flex;
+  justify-content: center;
+}
+
+.graph-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+
+
+}
+
+.graph-button button{
+  margin-top: 0px;
+  border-radius: 5px;
+  margin-right: 20px;
+  /* height: 38px; */
+}
+
+
 
 .data-table {
   display: flex;
@@ -70,8 +106,17 @@
 
 .table-body {
   flex: 1;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   height: calc(6 * 40px); /* Adjust 40px based on row height */
+  max-height: 300px; /* or any value that suits your design */
+  overflow-y: scroll; /* This will add vertical scrollbar */
+  overflow-x: hidden; /* Use this to hide horizontal scrollbar if not needed */
+  -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.table-body::-webkit-scrollbar {
+  display: none;
 }
 
 .table-row:last-child {
@@ -83,6 +128,7 @@
   justify-content: space-between;
   padding: 20px;
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .pagination button {
@@ -98,20 +144,25 @@
   cursor: not-allowed;
 }
 
-.footer {
-  text-align: center;
-  color: black;
-  background-color: transparent;
+.footer{
+  position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer p{
+  color: white;
+  font-family: sans-serif;
 }
 
 @media (max-width: 1300px) {
   .month-box {
-    width: calc(50% - 20px); 
+    width: calc(50% - 20px);
   }
 }
 
 @media (max-width: 768px) {
   .month-box {
-    width: calc(100% - 20px); 
+    width: calc(100% - 20px);
   }
 }

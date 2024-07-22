@@ -5,8 +5,12 @@ import * as XLSX from 'xlsx';
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { v4 as uuidv4 } from 'uuid';
 import { FaTrash } from 'react-icons/fa';
+import excel from '../../Assets/excel.png';
 import './FileUpload.css';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const FileUpload = () => {
   const [loading, setLoading] = useState(false);
@@ -63,19 +67,19 @@ const FileUpload = () => {
   };
 
   const goBack = async (jsonData) => {
-    console.log("Button clicked")
-    navigate('/main/graph');
-    // try {  
+    console.log("Button clicked");
+    navigate('/main/predictedData');
+    // try {
     //   const response = await axios.post('http://localhost:5000/upload', jsonData, {
     //     headers: {
     //       'Content-Type': 'application/json',
     //     },
     //   });
-    //   console.log('Data uploaded successfully:', response.data);  
-    //   navigate('/main/graph');  
-    // } catch (error) {  
-    //   console.error('Error uploading data:', error);  
-    // }  
+    //   console.log('Data uploaded successfully:', response.data);
+    //   navigate('/main/graph');
+    // } catch (error
+    //   console.error('Error uploading data:', error);
+    // }
   }
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -88,58 +92,72 @@ const FileUpload = () => {
 
   return (
     <div>
-      <div className='upload'>
-        <div className={`div1 ${uploadedFiles.length > 0 ? 'small' : 'large'}`}>
-          <div className='div2'>
-            <h1>Asset Management</h1>
-          </div>
-          <div className='drop'
-            {...getRootProps()}
-            style={{ borderColor: isDragging ? 'blue' : '#cccccc' }}
-          >
-            <IoCloudUploadOutline className='icon' color='blue' />
-            <p><b>Drop file or &nbsp;
-              <label className='browse' htmlFor="browseInput"><u>Browse</u></label>
-              <input id="browseInput" type="file" {...getInputProps()} />
-            </b></p>
-            <span>Supported file formats: CSV, Excel</span>
-          </div>
-          {loading && (
-            <div className="loading-indicator">Uploading and processing files...</div>
-          )}
-          {uploadedFiles.length > 0 && (
-            <div className='uploaded'>
-              <h3>Uploaded Files:</h3>
-              <ul>
-                {uploadedFiles.map((file) => (
-                  <li key={file.id}>
-                    <span>{file.name}</span>
-                    <FaTrash color='red' className='trash' onClick={(e) => { e.stopPropagation(); deleteFile(file.id); }} />
-                  </li>
-                ))}
-              </ul>
+      <div className='card123'>
+        <div className='upload'>
+          <div className={`div1 ${uploadedFiles.length > 0 ? 'small' : 'large'}`}>
+            <div className='div2'>
+              <h1>Asset Prediction</h1>
+              <p className='p1'>Please upload the file for analysis</p>
             </div>
-          )}
-          {/* <div className="OSRatio">
-          <div className="OSRatioBlock">
-            <label htmlFor="assetRatio" className="asset-ratio-label">Asset ratio (Windows:Mac):</label>
-            <input id="assetRatio" className="asset-ratio-input" type="text" value={assetRatio} onChange={(e) => setAssetRatio(e.target.value)} />
-          </div>
-          <div className="OSRatioBlock">
-            <label htmlFor="yearToPredict" className="asset-ratio-label">Year to predict:</label>
-            <input id="yearToPredict" className="asset-ratio-input" type="text" value={year} onChange={(e) => setYear(e.target.value)} placeholder="please enter the year"/>
-          </div>
-        </div> */}
-          <div>
-            <button className='uploadButton' onClick={goBack}>Upload Files</button>
+            <div className='drop'
+              {...getRootProps()}
+              style={{ borderColor: isDragging ? 'blue' : '#cccccc' }}
+            >
+              <IoCloudUploadOutline className='icon' color='blue' />
+              <p><b>Drop file or &nbsp;
+                <label className='browse' htmlFor="browseInput"><u>Browse</u></label>
+                <input id="browseInput" type="file" {...getInputProps()} />
+              </b></p>
+              <span>Supported file formats: CSV, Excel</span>
+            </div>
+            {loading && (
+              <div className="loading-indicator">Uploading and processing files...</div>
+            )}
+            {uploadedFiles.length > 0 && (
+              <div className='uploaded'>
+                <h3>Uploaded Files:</h3>
+                <ul>
+                  {uploadedFiles.map((file) => (
+                    <li key={file.id}>
+                      <span>{file.name}</span>
+                      <FaTrash color='red' className='trash' onClick={(e) => { e.stopPropagation(); deleteFile(file.id); }} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div>
+              <button className='downloadButton' onClick={goBack}>Upload Files</button>
+              <div className='tableExample drop'>
+                <div className='example'>
+                  <Container className='padall'>
+                    <Row>
+                      <Col xs="auto" className='tosiz'><img src={excel} alt="excel image" height="20" width="20" /></Col>
+                      <Col className='tosiz flexible-item'>
+                        <label>Table Example</label>
+                      </Col>
+                    </Row>
+                    <Row className='topspace'>
+                      <p className='topspace'>You can download the attached example and use them as a starting point for your own file.</p>
+                    </Row>
+                  </Container>
+                </div>
+                <br></br>
+              </div>
+              <div>
+                <a className='remsty' href="/example.xlsx" download>
+                  <button className='downloadButton  tocent '>Download</button>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div className='footer'>
-          © 2024 Wipro
-        </div>
+      <div className='footer ft1'>
+        © 2024 Wipro | Privacy Policy
+      </div>
     </div>
-
   );
 };
+
 export default FileUpload;

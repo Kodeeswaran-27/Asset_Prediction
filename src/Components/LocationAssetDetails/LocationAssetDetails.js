@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import { useNavigate } from 'react-router-dom';
-import monthlyData from './monthlyData.json';
+import monthlyData from './out.json';
 import './LocationAssetDetails.css';
 
 function LocationAssetDetails() {
   const navigate = useNavigate();
 
-  const [countryName, setCountryName] = useState("India");
-  const [year, setYear] = useState("2024");
+  // const [countryName, setCountryName] = useState({ value: 'India', label: 'India' });
+  const [year, setYear] = useState({ value: '2024', label: '2024' });
   const [currentPage, setCurrentPage] = useState(0);
   const monthsPerPage = 3;
 
-  const filteredData = monthlyData[countryName][year];
-  const months = Object.keys(filteredData);
+  const filteredData = monthlyData.filter(data => data.Year === Number(year.value));
+  const months = Array.from(new Set(filteredData.map(data => data.Month_Num)));
   const numPages = Math.ceil(months.length / monthsPerPage);
   const currentMonths = months.slice(currentPage * monthsPerPage, (currentPage + 1) * monthsPerPage);
 
   const laptopDetails = () => {
-    navigate(`/main/location/${countryName}/laptopdetails`);
+    navigate(`predictedData/laptopdetails`);
+  };
+
+  const goToGraphPage = () => {
+    navigate(`/main/graph`);
   };
 
   const goToNextPage = () => {
@@ -30,38 +35,60 @@ function LocationAssetDetails() {
 
   useEffect(() => {
     setCurrentPage(0);
-  }, [countryName, year]);
+  }, [year]);
+
+  // const countryOptions = [
+  //   { value: 'India', label: 'India' },
+  //   { value: 'USA', label: 'USA' },
+  // ];
+
+  const yearOptions = [
+    { value: '2024', label: '2024' },
+    {value:'2025', label:'2025'}
+  ];
+
+  // Array of month names
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
 
   return (
     <div>
-      <div className="filter-container">
-        <select value={countryName} onChange={(e) => setCountryName(e.target.value)}>
-          <option value="India">India</option>
-          <option value="USA">USA</option>
-        </select>
-        <select value={year} onChange={(e) => setYear(e.target.value)}>
-          <option value="2023">2023</option>
-          <option value="2024">2024</option>
-        </select>
-      </div>
+
       <div className='primaryDashboard'>
         <div className="countryDetails">
-          <span>Details for the selected Country</span>
+          <span className='PredictedData'>Predicted Data</span>
+
         </div>
+          <div className='maindiv'>
+          <div className="graph-button" >
+            <button style={{backgroundColor:"white",color:"black",fontWeight:"bold"}}  onClick={goToGraphPage}>Graph Prediction</button>
+          </div>
+          <div className="filter-container">
+            <Select
+              name="year"
+              options={yearOptions}
+              className="basic-single-select"
+              classNamePrefix="select"
+              value={year}
+              onChange={(selectedOption) => setYear(selectedOption)}
+              placeholder="Select year"
+            />
+          </div>
+          </div>
         <div className="dashboard">
           {currentMonths.map((month, index) => (
             <div className="month-box" key={index}>
-              <h2>{month}</h2>
+              <h2>{monthNames[month - 1]}</h2>
               <div className="data-table">
                 <div className="table-header">
-                  <span className='asset-row' style={{ marginRight: "50%" }}>Asset</span>
+                  <span className='asset-row' style={{ marginRight: "50%" }}>Item</span>
                   <span className='asset-count'>Count</span>
                 </div>
                 <div className="table-body">
-                  {filteredData[month].map((item, idx) => (
+                {filteredData.filter(data => data.Month_Num === month).map((item, idx) => (
                     <div className="table-row" key={idx} onClick={laptopDetails} style={{ cursor: 'pointer' }}>
-                      <span>{item.name}</span>
-                      <span>{item.count}</span>
+                      <span>{item.Item}</span>
+                      <span>{item.result_rand}</span>
                     </div>
                   ))}
                 </div>
@@ -72,11 +99,13 @@ function LocationAssetDetails() {
             <button onClick={goToPrevPage} disabled={currentPage === 0}>Previous</button>
             <button onClick={goToNextPage} disabled={currentPage === numPages - 1}>Next</button>
           </div>
+          <div className='footer'>
+        <p>©2024 - Wipro | Privacy Policy</p>
+      </div>
         </div>
+
       </div>
-      <div className='footer'>
-        © 2024 Wipro
-      </div>
+
     </div>
   );
 }

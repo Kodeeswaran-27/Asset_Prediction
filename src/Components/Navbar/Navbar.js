@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import '../../App.css';
 import Wipro from '../../Assets/Wipro.png';
+import live_workspace from '../../Assets/live_workspace.png'
+import logout from '../../Assets/logout.png'
 import '../Navbar/Navbar.css';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { SignOutButton } from '../SSO/SignOutButton'
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Navbar({ userName, userRole }) {
@@ -13,35 +17,21 @@ function Navbar({ userName, userRole }) {
         navigate('/');
     };
 
-    const togglePopup = () => {
-        setShowPopup(!showPopup);
-    };
+    // const togglePopup = () => {
+    //     setShowPopup(!showPopup);
+    // };
 
     return (
         <div className="Navbar">
-            <div className="leftSide">
-                <a href="https://www.wipro.com/">
-                    <img className="WiproLogo" alt="Wipro" src={Wipro} />
-                </a>
+            <div className='logo'>
+              <img src={live_workspace} alt="Live workspace" />
             </div>
-            <div className="divider"></div>
-            <div className="middle">
-                <a href="https://www.wipro.com/infrastructure/live-workspace/" className="liveWorkSpace">
-                    Live WorkSpace<sup>TM</sup>
-                </a>
-            </div>
-            <div className="rightSide" onClick={togglePopup}>
-                {/* <AccountCircleIcon className="accountIcon" /> */}
-                {showPopup && (
-                    <div className="profilePopup">
-                        <div className="popupContent">
-                            <div className="userName">Hi, {userName}!</div>
-                            <div className="Role">Role: {userRole}</div>
-                            <button className="LogOut" onClick={handleLogout}>Sign out</button>
-                        </div>
-                    </div>
-                )}
-                <span className="username">{userName}</span>
+            <div className='logout'>
+              <p>Hi,  Adarsh</p>
+              <Link to="/">
+                {/* <img className='logout_image'src={logout} alt="Logout" /> */}
+                <SignOutButton/>
+              </Link>
             </div>
         </div>
     )

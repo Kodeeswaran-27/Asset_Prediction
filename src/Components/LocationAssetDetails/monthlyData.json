@@ -1883,9 +1883,8 @@
       { "name": "New Assets required", "count": 70 }
       ]
    
-  }
- },
- "2024":{
+  },
+  "2024":{
    "January": [
       { "name": "Assets that need replacement", "count": 50 },
       { "name": "New Assets required", "count": 70 },
@@ -2512,4 +2511,6 @@
       ]
    
   }
+ }
+ 
  }

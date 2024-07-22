@@ -14,7 +14,7 @@ import "./Main.css";
 function App() {
     return (
         <div className='App'>
-            <nav className='mainpage'>
+            <nav className='Mainpage'>
                 <Navbar userName="Admin" userRole="Asset Predictor"/>
                 <div className='Maindiv'>
                     {/* <div className="Sidebar">
@@ -24,8 +24,9 @@ function App() {
                         <Routes>
                             <Route path="home" element={<FileUpload />} />
                             <Route path="fileupload" element={<FileUpload />} />
-                            <Route path="location/:countryName" element={<LocationAssetDetails />} />
-                            <Route path="location/:countryName/laptopdetails" element={<LaptopDetails />} />
+                            
+                            <Route path="predictedData/laptopdetails" element={<LaptopDetails />} />
+                            <Route path="predictedData" element={<LocationAssetDetails />} />
                             <Route path="accounts" element={<Accounts />} />
                             <Route path="logs" element={<Logs />} />
                             <Route path="graph" element={<Graph />} />
